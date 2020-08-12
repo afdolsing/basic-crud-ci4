@@ -9,9 +9,7 @@ class Pages extends BaseController
         $data = [
             "title" => "Home | WPU"
         ];
-        echo view('layout/header', $data);
-        echo view('pages/home');
-        echo view('layout/footer');
+        return view('pages/home', $data);
     }
 
     public function about()
@@ -19,9 +17,27 @@ class Pages extends BaseController
         $data = [
             "title" => "About Me"
         ];
-        echo view('layout/header', $data);
-        echo view('pages/about');
-        echo view('layout/footer');
+        return view('pages/about', $data);
+    }
+
+    public function contact()
+    {
+        $data = [
+            "title" => "contact us",
+            "alamat" => [
+                [
+                    "tipe" => "Rumah",
+                    "alamat" => "jl ikan laut, no 2020",
+                    "kota" => "ponorogo"
+                ],
+                [
+                    "tipe" => "Kantor",
+                    "alamat" => "jl sarden abc, no 123",
+                    "kota" => "malang"
+                ]
+            ]
+        ];
+        return view('pages/contact', $data);
     }
     //--------------------------------------------------------------------
 
