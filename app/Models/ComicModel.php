@@ -7,4 +7,5 @@ use CodeIgniter\Model;
 class ComicModel extends Model
 {
     protected $table = "komik";
+    protected $useTimestamps = true;
 }
