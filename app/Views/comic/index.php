@@ -4,7 +4,13 @@
 <div class="container">
     <div class="row">
         <div class="col">
+            <a href="/comics/create" class="btn btn-primary my-2">Tambah Komik</a>
             <h2 class="mt-1">Daftar Comic</h2>
+            <?php if (session()->getFlashdata('pesan')) : ?>
+                <div class="alert alert-success" role="alert">
+                    <?= session()->getFlashdata('pesan') ?>
+                </div>
+            <?php endif ?>
             <table class="table">
                 <thead>
                     <tr>
@@ -19,7 +25,7 @@
                     <?php foreach ($komik as $k) : ?>
                         <tr>
                             <th scope="row"><?= $no ?></th>
-                            <td><img src="/img/<?= $k['sampul'] ?>" alt="" class="sampul"></td>
+                            <td><img src="/img/<?= $k['sampul'] ?>" alt="" id="sampul"></td>
                             <td><?= $k['judul'] ?></td>
                             <td>
                                 <a href="/comics/<?= $k['slug'] ?>" class="btn btn-success">detail</a>
