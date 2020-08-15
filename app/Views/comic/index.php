@@ -22,7 +22,7 @@
                             <td><img src="/img/<?= $k['sampul'] ?>" alt="" class="sampul"></td>
                             <td><?= $k['judul'] ?></td>
                             <td>
-                                <a href="" class="btn btn-success">detail</a>
+                                <a href="/comics/<?= $k['slug'] ?>" class="btn btn-success">detail</a>
                             </td>
                         </tr>
                         <?php $no++ ?>
