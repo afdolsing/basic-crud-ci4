@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\ComicModel;
 use CodeIgniter\CodeIgniter;
+use CodeIgniter\Config\Config;
 
 class Comics extends BaseController
 {
@@ -44,7 +45,8 @@ class Comics extends BaseController
     public function create()
     {
         $data = [
-            "title" => "form tambah data komik"
+            "title" => "form tambah data komik",
+            "validation" => \Config\Services::validation()
         ];
 
         return view('comic/create', $data);
@@ -52,6 +54,21 @@ class Comics extends BaseController
 
     public function save()
     {
+        //validasi input
+        if (!$this->validate([
+            "judul" => [
+                "rules" => 'required|is_unique[komik.judul]',
+                "errors" => [
+                    'required' => '{field} komik harus diisi',
+                    'is_unique' => '{field} komik sudah terdaftar'
+                ]
+            ]
+        ])) {
+            // ambil pesan kesalahan
+            $validation = \Config\Services::validation();
+            return redirect()->to('/comics/create')->withInput()->with('validation', $validation);
+        }
+
         $slug = url_title($this->request->getVar('judul'), '-', true);
         $this->komikModel->save([
             "judul" => $this->request->getVar('judul'),
