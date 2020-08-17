@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col">
             <a href="/comics/create" class="btn btn-primary my-2">Tambah Komik</a>
-            <h2 class="mt-1">Daftar Comic</h2>
+            <h2 class="mt-1">Daftar Komik</h2>
             <?php if (session()->getFlashdata('pesan')) : ?>
                 <div class="alert alert-success" role="alert">
                     <?= session()->getFlashdata('pesan') ?>

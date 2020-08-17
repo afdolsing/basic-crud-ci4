@@ -32,8 +32,11 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Pages::index');
+
 $routes->get('/comics/create', 'Comics::create');
-$routes->get('/comics/(:segment)', 'Comics::detail/$1');
+$routes->get('/comics/edit/(:segment)', 'Comics::edit/$1');
+$routes->delete('/comics/(:num)', 'Comics::delete/$1');
+$routes->get('/comics/(:any)', 'Comics::detail/$1');
 
 
 /**
