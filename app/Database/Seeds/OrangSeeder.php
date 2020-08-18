@@ -8,20 +8,31 @@ class OrangSeeder extends \CodeIgniter\Database\Seeder
 {
     public function run()
     {
+        // $data = [
+        //     [
+        //         'nama'      => 'Ucup',
+        //         'alamat'    => 'jl sarden abc no 21',
+        //         'created_at' => Time::now('Asia/Jakarta', 'en_ID'),
+        //         'updated_at' => Time::now('Asia/Jakarta', 'en_ID')
+        //     ],
+        //     [
+        //         'nama'      => 'Otong',
+        //         'alamat'    => 'jl ikan tuna no 1',
+        //         'created_at' => Time::now('Asia/Jakarta', 'en_ID'),
+        //         'updated_at' => Time::now('Asia/Jakarta', 'en_ID')
+        //     ]
+        // ];
+
+        $faker = \Faker\Factory::create('id_ID');
+
+        for ($i = 0; $i < 100; $i++) :
         $data = [
-            [
-                'nama'      => 'Ucup',
-                'alamat'    => 'jl sarden abc no 21',
-                'created_at' => Time::now('Asia/Jakarta', 'en_ID'),
-                'updated_at' => Time::now('Asia/Jakarta', 'en_ID')
-            ],
-            [
-                'nama'      => 'Otong',
-                'alamat'    => 'jl ikan tuna no 1',
-                'created_at' => Time::now('Asia/Jakarta', 'en_ID'),
-                'updated_at' => Time::now('Asia/Jakarta', 'en_ID')
-            ]
+            'nama'      => $faker->name,
+            'alamat'    => $faker->address,
+            'created_at' => Time::now('Asia/Jakarta', 'en_ID'),
+            'updated_at' => Time::now('Asia/Jakarta', 'en_ID')
         ];
+
 
         // Simple Queries
         // $this->db->query(
@@ -30,7 +41,8 @@ class OrangSeeder extends \CodeIgniter\Database\Seeder
         // );
 
         // Using Query Builder
-        // $this->db->table('orang')->insert($data);
-        $this->db->table('orang')->insertBatch($data);
+        $this->db->table('orang')->insert($data);
+        // $this->db->table('orang')->insertBatch($data);
+        endfor;
     }
 }
