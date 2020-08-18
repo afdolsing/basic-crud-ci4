@@ -19,9 +19,15 @@ class Orang extends BaseController
     {
         $curentPage = $this->request->getVar('page_orang') ? $this->request->getVar('page_orang') : 1;
 
+        $keyword = $this->request->getVar('keyword');
+        if ($keyword) {
+            $orang = $this->orangModel->search($keyword);
+        } else {
+            $orang = $this->orangModel;
+        }
         $data = [
             "title" => "daftar orang",
-            "orang" => $this->orangModel->paginate(5, 'orang'),
+            "orang" => $orang->paginate(5, 'orang'),
             "pager" => $this->orangModel->pager,
             "curent_page" => $curentPage
         ];
