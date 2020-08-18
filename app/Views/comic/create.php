@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-8">
             <h3 class="my-2"><?= $title ?></h3>
-            <form action="/comics/save" method="post">
+            <form action="/comics/save" method="post" enctype="multipart/form-data">
                 <?= csrf_field() ?>
                 <div class="form-group row">
                     <label for="judul" class="col-sm-2 col-form-label">Judul</label>
@@ -30,8 +30,17 @@
                 </div>
                 <div class="form-group row">
                     <label for="sampul" class="col-sm-2 col-form-label">sampul</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="sampul" name="sampul" value="<?= old('sampul') ?>">
+                    <div class="col-sm-2">
+                        <img src="/img/default.jpg" class="img-thumbnail img-preview">
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input <?= ($validation->hasError('sampul')) ? 'is-invalid' : ''; ?>" id="sampul" name="sampul" onchange="previewImg()">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('sampul') ?>
+                            </div>
+                            <label class="custom-file-label" for="sampul">Pilih Gambar..</label>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row">
