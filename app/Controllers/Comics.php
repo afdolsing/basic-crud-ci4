@@ -72,9 +72,6 @@ class Comics extends BaseController
                 ]
             ]
         ])) {
-            // ambil pesan kesalahan
-            // $validation = \Config\Services::validation();
-            // return redirect()->to('/comics/create')->withInput()->with('validation', $validation);
             return redirect()->to('/comics/create')->withInput();
         }
         // ambil gambar
@@ -182,7 +179,7 @@ class Comics extends BaseController
             // hapus gambar
             unlink('img/' . $komik['sampul']);
         }
-
+        
         $this->komikModel->delete($id);
 
         session()->setFlashdata('pesan', 'data telah dihapus');
